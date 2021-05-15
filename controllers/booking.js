@@ -4,6 +4,25 @@ const asyncHandler = require('../middleware/async');
 const sendEmail = require('../utils/sendEmail');
 const User = require('../models/User');
 const Booking = require('../models/Bookings')
+const fetch = require('node-fetch');
+let centres = [];
+exports.getallcentres = asyncHandler(async (req, res, next) => {
+    fetch('https://api.rootnet.in/covid19-in/hospitals/medical-colleges')
+    .then(res => res.json())
+    .then(json => {
+        centres = res.json(json);
+        return res.json(json);
+    })
+   
+    
+});
+
+exports.searchcentre = asyncHandler(async (req, res, next) => {
+      const city = req.body.city;
+      console.log(centres)
+
+
+})
 
 exports.booknow = asyncHandler(async (req, res, next) => {
   const { name,bloodgroup,age,location,contact  } = req.body;
