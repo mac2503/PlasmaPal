@@ -1,3 +1,7 @@
+const path = require('path');
+const http = require('http');
+const socketio = require('socket.io');
+
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -7,6 +11,7 @@ const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
 const multer = require('multer');
 const upload = multer({dest:'uploads/'}).single("report");
+
 // Load environment variables
 dotenv.config({path: './config/config.env'});
 
@@ -19,9 +24,13 @@ const bookingroutes = require('./routes/bookingroutes');
 const eligibltyroutes = require('./routes/eligibltyroutes');
 const donors = require('./routes/donors');
 const recipients = require('./routes/recipients');
-const report = require('./routes/report.js')   
+const report = require('./routes/report.js');
+const chat = require('./routes/chat');   
 
 const app = express();
+
+const server = http.createServer(app);
+const io = socketio(server);
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
@@ -59,15 +68,40 @@ app.use('/api/v1/donate', eligibltyroutes);
 app.use('/api/v1/donor', donors);
 app.use('/api/v1/recipient', recipients);
 app.use('/report',report);
+app.use('/api/v1/chat', chat);
 
 app.use(errorHandler);
 
+// Models
+const Message = require("./models/Message");
+const Conversation = require("./models/Conversation");
+
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(
+server.listen(
   PORT, 
   console.log(`Server running on port ${PORT}`.yellow.bold)
   );
+
+//Socket work for chats
+// Run when client connects
+io.on("connection", (socket) => {
+  socket.on("join", (room) => {
+    socket.join(room);
+    console.log("conversation started!");
+    // Listen for chat message
+    socket.on("messageServer", async (msg) => {
+      console.log("Received", msg);
+      socket.to(room).emit("messageClient", msg);
+      console.log("Emited", msg);
+      await Message.create(msg);
+    });
+  });
+  // Run when a client disconnects
+  socket.on("disconnect", () => {
+    console.log("Socket io disconnected");
+  });
+});
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err, promise) => {
