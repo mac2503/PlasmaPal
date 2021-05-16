@@ -15,6 +15,7 @@ connectDB();
 // Route files
 const userAuth = require('./routes/userAuth');
 const bookingroutes = require('./routes/bookingroutes');
+const eligibltyroutes = require('./routes/eligibltyroutes');
 const donors = require('./routes/donors');
 const recipients = require('./routes/recipients');
 
@@ -34,6 +35,7 @@ app.use(cookieParser());
 // Mount routers
 app.use('/api/v1/user', userAuth);
 app.use('/api/v1/slot', bookingroutes);
+app.use('/api/v1/donate', eligibltyroutes);
 app.use('/api/v1/donor', donors);
 app.use('/api/v1/recipient', recipients);
 
