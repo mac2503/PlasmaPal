@@ -5,7 +5,8 @@ const colors = require('colors');
 const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 const connectDB = require('./config/db');
-
+const multer = require('multer');
+const upload = multer({dest:'uploads/'}).single("report");
 // Load environment variables
 dotenv.config({path: './config/config.env'});
 
@@ -18,6 +19,7 @@ const bookingroutes = require('./routes/bookingroutes');
 const eligibltyroutes = require('./routes/eligibltyroutes');
 const donors = require('./routes/donors');
 const recipients = require('./routes/recipients');
+const report = require('./routes/report.js')   
 
 const app = express();
 
@@ -32,12 +34,31 @@ app.use(express.json());
 // Cookie parser
 app.use(cookieParser());
 
+var storage = multer.diskStorage({   
+  destination: function(req, file, cb) { 
+     cb(null, './uploads');    
+  }, 
+  filename: function (req, file, cb) { 
+     cb(null , file.originalname);   
+  }
+});
+
+//multer for uploading report 
+app.post("/report", (req, res) => {
+  upload(req, res, (err) => {
+   if(err) {
+     res.status(400).send("Something went wrong!");
+   }
+   res.send(req.file);
+ });
+});
 // Mount routers
 app.use('/api/v1/user', userAuth);
 app.use('/api/v1/slot', bookingroutes);
 app.use('/api/v1/donate', eligibltyroutes);
 app.use('/api/v1/donor', donors);
 app.use('/api/v1/recipient', recipients);
+app.use('/report',report);
 
 app.use(errorHandler);
 
