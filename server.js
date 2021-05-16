@@ -15,6 +15,7 @@ connectDB();
 // Route files
 const userAuth = require('./routes/userAuth');
 const bookingroutes = require('./routes/bookingroutes');
+const eligibltyroutes = require('./routes/eligibltyroutes');
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 // Mount routers
 app.use('/api/v1/user', userAuth);
 app.use('/api/v1/slot', bookingroutes);
+app.use('/api/v1/donate', eligibltyroutes);
 
 app.use(errorHandler);
 
