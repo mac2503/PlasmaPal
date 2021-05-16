@@ -1,0 +1,49 @@
+#firstrow{
+    margin-top: 80px;
+    height: 600px;
+
+    
+}
+.Eligibility{
+    overflow-y: hidden!important;
+}
+
+#efrow{
+    
+        background: linear-gradient(to right, #0575E6,
+        #021B79);
+        padding:30px;
+        padding-left: 40px!important;
+        border-radius: 80px 0 0 10px;
+        text-align: justify;
+}
+
+#efrow p{
+
+    line-height: 1.5;
+    font-weight: lighter;
+}
+#efrow li{
+    line-height: 1.5;
+    font-weight: lighter;
+}
+#esrow{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    position: relative;
+    top: -2rem;
+    /* border: solid black; */
+    background-color:white ;
+}
+
+/* form */
+#input-field{
+    border: thin solid black;
+    border-radius: 5px;
+}
+#firstrow{
+    margin-bottom: 0!important;
+}
+input:not([type]), input[type=text]:not(.browser-default), input[type=password]:not(.browser-default), input[type=email]:not(.browser-default), input[type=url]:not(.browser-default), input[type=time]:not(.browser-default), input[type=date]:not(.browser-default), input[type=datetime]:not(.browser-default), input[type=datetime-local]:not(.browser-default), input[type=tel]:not(.browser-default), input[type=number]:not(.browser-default), input[type=search]:not(.browser-default), textarea.materialize-textarea{
+    border-bottom: none!important;
+}
