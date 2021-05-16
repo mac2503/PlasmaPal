@@ -1,0 +1,60 @@
+#flogin{
+  display: flex;
+  justify-content: center
+
+}
+#logincard{
+    position: relative;
+    top: 25vh;
+    width: 400px;height: 500px!important;
+}
+#logincard h5{
+    font-weight: bold;
+    padding-bottom: 1.5rem;
+}
+
+.btn{
+    background-color: #495AFF;
+
+}
+#seclogin{
+    background: url(../../img/fancy-pants.jpg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+#Login{
+    /* height:91vh!important; */
+    overflow: hidden!important;
+    margin-bottom: 0!important;
+    padding-bottom: 0!important;
+}
+
+#seclogin img{
+    position: relative;
+    top: 20vh;
+    
+}
+#seclogin h4{
+    position: relative;
+    top: 10vh;
+    font-weight: lighter;
+}
+#seclogin p{
+    position: relative;
+    top: 13vh;
+    font-size: 14px;
+}
+.input-field{
+    margin: 0;
+}
+
+.or{
+    /* padding-top: 5rem!important; */
+    font-weight: bold;
+    /* font-size: 15px; */
+    position: relative;
+    top: 2rem;
+}

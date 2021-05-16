@@ -1,0 +1,223 @@
+.Landing{
+  
+
+}
+#frow{
+    position: relative;
+    top: 2.7rem;
+    padding-bottom: 6.4rem;
+    
+}
+#fscol{
+    background-color: azure;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 0!important;
+    position: relative;
+    right: 0rem!important;
+    margin-right: 0!important;
+    bottom: -5.5rem;
+}
+
+#ffcol h1{
+    text-decoration: black;
+    font-weight: 100;
+    -webkit-text-fill-color: transparent;
+  
+            /* Set the stroke width 
+               of the text */
+            -webkit-text-stroke-width: 1px;
+}
+#ffcol p{
+    text-decoration:black;
+    font-weight: normal;
+    font-size: larger;
+}
+#ffcol{
+    position: relative;
+    left: 8rem;
+    top: 6rem;
+}
+
+
+/*Second row*/
+#srow{
+    margin: 0!important;
+    padding: 0!important;
+    
+}
+#sscol{
+    padding: 2rem;
+    border-top: cornflowerblue 3px solid;
+    
+}
+#sfcol{
+    background: linear-gradient(to right, #83EAF1,
+                    #63A4FF, #83EAF1);
+    height: 527px;
+    position: relative;
+    top: -0.1rem;
+    text-align: center;
+    padding: 2rem!important;
+}
+#sfcol h2{
+    -webkit-text-fill-color: transparent;
+  
+    /* Set the stroke width 
+       of the text */
+    -webkit-text-stroke-width: 1px;
+    text-decoration: underline;
+    text-decoration-color: white;
+    text-decoration-style:none;
+    text-underline-offset: 10px;
+    
+}
+#sfcol p{
+    line-height: 1.5;
+
+   
+    font-weight: lighter;
+    
+}
+#sfcol a{
+    color: cornflowerblue;
+    border-radius: 5px;
+    padding: 1rem!important;
+    height: 70px;
+}
+#arr{
+    font-weight: bold;
+    position: relative;
+    top:2px;
+}
+
+
+/*Third Row*/
+#trow{
+    margin: 0!important;
+    padding: 0!important;
+    position: relative;
+    top: -2.8rem;
+}
+#tfcol{
+    background: linear-gradient(to right, #09C6F9,
+                    #045DE9, #09C6F9);
+    height: 480px;
+    position: relative;
+    top: -0.1rem;
+    text-align: center;
+    padding: 2rem!important;
+
+}
+#tfcol p{
+    line-height: 1.5;
+
+    font-weight: lighter;
+}
+#tfcol a{
+    color: cornflowerblue;
+    border-radius: 5px;
+    padding: 1rem!important;
+    height: 70px;
+}
+
+
+#tscol{
+    padding: 0!important;
+}
+#tscol img{
+    position: relative;
+    top: 2.5rem;
+}
+
+/*Fourth ROw*/
+
+#ftrow{
+    margin: 0!important;
+    padding: 0!important;
+    position: relative;
+    top: -4.9rem;
+    
+}
+
+#ftscol{
+    background: linear-gradient(to right, #009FFD,
+                    #2A2A72, #009FFD);
+    height: 480px;
+    position: relative;
+    top: -0.1rem;
+    text-align: center;
+    padding: 2rem!important;
+}
+
+#ftscol p{
+    line-height: 1.5;
+
+   
+    font-weight: lighter;
+    
+}
+#ftscol a{
+    color: cornflowerblue;
+    border-radius: 5px;
+    padding: 1rem!important;
+    height: 70px;
+}
+#ftfcol img{
+    position: relative;
+    top: 3rem;
+}
+
+/*Fifth ROw*/
+#parallax {
+
+    /* The image used */
+    background-image: url("../img/parallax.jpg");
+  
+    /* Set a specific height */
+    min-height: 300px;
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0!important;
+    padding: 0!important;
+    position:relative;
+    top: -5rem;
+    
+  }
+  #parbody h3{
+      color: white;
+
+  }
+  #parbody{
+      padding: 0.5rem;
+      text-align: center;
+      /* height: 200px!important; */
+  }
+  #parbody p{
+      line-height: 1.5;
+      color: white;
+  }
+  /*Footer*/
+  footer{
+    background-color: #495AFF!important;
+    position: relative;
+    top: -5rem;
+    margin-bottom: 0px!important;
+    
+  }
+ #landbtn{
+     
+     color: white!important;
+ }
+ 
+ /*icon*/
+ #icon{
+     height: 140px;
+     position: relative;
+     top: 3rem!important;
+ }
