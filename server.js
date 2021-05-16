@@ -12,6 +12,9 @@ const connectDB = require('./config/db');
 const multer = require('multer');
 const upload = multer({dest:'uploads/'}).single("report");
 
+const formatMessage = require('./utils/messages');
+const {userJoin, getCurrentUser, userLeave, getRoomUsers} = require('./utils/users');
+
 // Load environment variables
 dotenv.config({path: './config/config.env'});
 
@@ -31,6 +34,15 @@ const app = express();
 
 const server = http.createServer(app);
 const io = socketio(server);
+
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+const botName = 'ChatCord Bot';
+
+// app.get('/api/v1/chat', (req, res) => {
+//   res.sendFile(__dirname + '/public/index.html')
+// })
 
 // Dev logging middleware
 if (process.env.NODE_ENV === 'development') {
@@ -83,23 +95,48 @@ server.listen(
   console.log(`Server running on port ${PORT}`.yellow.bold)
   );
 
-//Socket work for chats
 // Run when client connects
-io.on("connection", (socket) => {
-  socket.on("join", (room) => {
-    socket.join(room);
-    console.log("conversation started!");
-    // Listen for chat message
-    socket.on("messageServer", async (msg) => {
-      console.log("Received", msg);
-      socket.to(room).emit("messageClient", msg);
-      console.log("Emited", msg);
-      await Message.create(msg);
-    });
+io.on('connection', socket => {
+
+  socket.on('joinRoom', ({username, room}) => {
+      const user = userJoin(socket.id, username, room);
+
+      socket.join(user.room);
+
+  // Welcome current user
+  // To emit to a single client which is connected 
+  socket.emit('message', formatMessage(botName, 'Welcome to ChatCord!'));
+
+  // Broadcast when a user connects
+  // To broadcast to all clients except the client connecting
+  socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined the chat`));
+
+  // Send users and room info
+  io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
   });
-  // Run when a client disconnects
-  socket.on("disconnect", () => {
-    console.log("Socket io disconnected");
+
+  });
+
+  // Listen for chatMessage
+  socket.on('chatMessage', msg => {
+      const user = getCurrentUser(socket.id);
+      io.to(user.room).emit('message', formatMessage(user.username, msg));
+  });
+
+  // Runs when a client disconnects
+  socket.on('disconnect', () => {
+      const user = userLeave(socket.id);
+      if (user) {
+          io.to(user.room).emit('message', formatMessage(botName,`${user.username} has left the chat`));
+
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+      room: user.room,
+      users: getRoomUsers(user.room)
+  });
+      }
   });
 });
 
