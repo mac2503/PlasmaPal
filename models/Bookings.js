@@ -14,11 +14,20 @@ age:{
 },
 location:{
     type: String,
-    required: [true, 'Please add your']
+    required: [true, 'Please add your address']
 },
 contact:{
     type: Number,
     required: [true, 'Please add contact number']
+},
+date:{
+    type: Date,
+    default:Date.now(),
+    required: [true, 'Please select date']
+},
+time:{
+    type: String,
+    required: [true, 'Please select time']
 },
 belongsTo:{
     type: mongoose.Schema.ObjectId,

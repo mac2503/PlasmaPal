@@ -19,6 +19,7 @@ exports.check = asyncHandler(async (req, res, next) => {
         healthissue,
         belongsTo:req.user.id
       })
+      res.redirect('/report')
 
       await eligiblty.save();
       return res.json("You are ELIGIBLE for plasma donation .Kindly book a slot").status(200)
